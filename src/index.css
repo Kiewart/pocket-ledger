@@ -1,0 +1,160 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Pocket Ledger design tokens.
+ * Light and dark are both first-class; every surface, border and text colour
+ * is driven from these variables so the whole app re-themes instantly.
+ */
+:root {
+  --pl-bg: #f4f6fa;
+  --pl-bg-accent: #eef1f7;
+  --pl-surface: #ffffff;
+  --pl-surface-2: #f7f9fc;
+  --pl-surface-3: #eef1f7;
+  --pl-border: #e2e6ef;
+  --pl-border-strong: #cbd3e1;
+  --pl-text: #0f172a;
+  --pl-text-soft: #475569;
+  --pl-muted: #7b8798;
+  --pl-primary: #4f46e5;
+  --pl-primary-soft: #eef2ff;
+  --pl-primary-strong: #4338ca;
+  --pl-income: #059669;
+  --pl-income-soft: #ecfdf5;
+  --pl-expense: #e11d48;
+  --pl-expense-soft: #fff1f2;
+  --pl-warning: #d97706;
+  --pl-warning-soft: #fffbeb;
+  --pl-info: #0284c7;
+  --pl-info-soft: #f0f9ff;
+  --pl-shadow: 0 1px 2px rgb(15 23 42 / 0.06), 0 8px 24px -12px rgb(15 23 42 / 0.18);
+  --pl-shadow-lg: 0 12px 40px -12px rgb(15 23 42 / 0.28);
+}
+
+.dark {
+  --pl-bg: #0b1120;
+  --pl-bg-accent: #0f172a;
+  --pl-surface: #111a2e;
+  --pl-surface-2: #162034;
+  --pl-surface-3: #1d2842;
+  --pl-border: #243049;
+  --pl-border-strong: #33415e;
+  --pl-text: #e8eefc;
+  --pl-text-soft: #aab6cf;
+  --pl-muted: #7d8ba6;
+  --pl-primary: #7c7bf5;
+  --pl-primary-soft: #1e2148;
+  --pl-primary-strong: #918ff8;
+  --pl-income: #34d399;
+  --pl-income-soft: #06281f;
+  --pl-expense: #fb7185;
+  --pl-expense-soft: #2c1119;
+  --pl-warning: #fbbf24;
+  --pl-warning-soft: #2a1f07;
+  --pl-info: #38bdf8;
+  --pl-info-soft: #07222f;
+  --pl-shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 30px -14px rgb(0 0 0 / 0.8);
+  --pl-shadow-lg: 0 16px 48px -16px rgb(0 0 0 / 0.85);
+}
+
+@theme inline {
+  --color-bg: var(--pl-bg);
+  --color-bg-accent: var(--pl-bg-accent);
+  --color-surface: var(--pl-surface);
+  --color-surface-2: var(--pl-surface-2);
+  --color-surface-3: var(--pl-surface-3);
+  --color-border: var(--pl-border);
+  --color-border-strong: var(--pl-border-strong);
+  --color-text: var(--pl-text);
+  --color-text-soft: var(--pl-text-soft);
+  --color-muted: var(--pl-muted);
+  --color-primary: var(--pl-primary);
+  --color-primary-soft: var(--pl-primary-soft);
+  --color-primary-strong: var(--pl-primary-strong);
+  --color-income: var(--pl-income);
+  --color-income-soft: var(--pl-income-soft);
+  --color-expense: var(--pl-expense);
+  --color-expense-soft: var(--pl-expense-soft);
+  --color-warning: var(--pl-warning);
+  --color-warning-soft: var(--pl-warning-soft);
+  --color-info: var(--pl-info);
+  --color-info-soft: var(--pl-info-soft);
+
+  --font-sans:
+    'Inter var', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  --radius-card: 0.875rem;
+}
+
+@layer base {
+  * {
+    border-color: var(--pl-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--pl-bg);
+    color: var(--pl-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--pl-border-strong);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .pl-card {
+    background-color: var(--pl-surface);
+    border: 1px solid var(--pl-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--pl-shadow);
+  }
+}
+
+@layer utilities {
+  .pl-scroll-x {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .pl-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
